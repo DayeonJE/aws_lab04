@@ -1,0 +1,64 @@
+# pandas실습과제답안.py
+import numpy as np
+import pandas as pd
+
+# 1번
+df = pd.read_csv('boston_train.csv')
+
+print("Shape:\n", df.shape)
+print("Length:\n", len(df))
+print("Column Headers:\n", df.columns)
+print("Data types:\n", df.dtypes)
+print("Index:\n", df.index)
+print("Values:\n", df.values)
+print("head",df.head())
+print("teail",df.tail())
+print("Describe", df.describe(),"\n")
+print("Non NaN observations", df.count(),"\n")
+print("MAD", df.mad(),"\n")
+print("Median", df.median(),"\n")
+print("Mean", df.mean(),"\n")
+print("Sum", df.sum(),"\n")
+print("Min", df.min(),"\n")
+print("Max", df.max(),"\n")
+print("Mode", df.mode(),"\n")
+print("Standard Deviation", df.std(),"\n")
+print("Variance", df.var(),"\n")
+print("Skewness", df.skew(),"\n")
+print("Kurtosis", df.kurt(),"\n")
+
+print('-'*50)
+
+
+# 2.1번
+print('CRIM mean: ', df['CRIM'].mean())
+print(df[df['CRIM'] > df['CRIM'].mean()])
+
+print('-'*50)
+
+# 2.2번
+print('AGE mean: ', df['AGE'].mean())
+print(df[df['AGE'] < df['AGE'].mean()])
+
+print('-'*50)
+
+# 2.3번
+print('MEDV median: ', df['MEDV'].median())
+print(df[df['MEDV'] < df['MEDV' ].median()])
+
+print('-'*50)
+
+
+# 3번
+
+df_train = pd.read_csv('boston_train.csv')
+df_test = pd.read_csv('boston_test.csv')
+
+df = pd.concat([df_train[:10],df_test[:10]],ignore_index=True)
+# df = df_train[:10].append(df_test[:10],ignore_index=True)
+
+print(df)
+
+df.to_csv('boston_batch.csv', index=False)
+print('-'*50)
+
