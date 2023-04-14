@@ -1,0 +1,47 @@
+# pandas 실습과제 - 3
+import pandas as pd
+import numpy as np
+
+# 1번
+df = pd.read_csv('boston_train.csv')
+
+# print(pd.pivot_table(df,columns=['CRIM'], agg_func = np.sum))
+
+for col in df.columns:
+# for col in df.columns[:]:
+    print('[',col,']')
+    print('sum :',df[col].sum())
+    print('mean :',df[col].mean())
+    print('median :',df[col].median())
+    print('min :',df[col].min())
+    print('max :',df[col].max())
+    print('describe :', df[col].describe())
+
+# 2번
+sunspots = pd.read_csv("sunspots.csv")
+print("Total Null Values\n", pd.isnull(sunspots).sum())
+sunspots = sunspots.fillna(0)
+print(sunspots)
+print("Total Null Values\n", pd.isnull(sunspots).sum())
+
+sunspots.to_csv('sunspots_new.csv',float_format = '%.2f',
+                na_rep='NaN',index=False)
+
+# 3번 
+# 3.1
+df = pd.read_csv('WHO_first9cols.csv')
+result = df['Country'].str.contains("Albania")
+print(df['Country'][result])  # 요소값들로 출력
+print(df[result])  # 데이터 프레임으로 출력
+
+# 3.2
+result = df['Country'].str.contains("Ethiopia")
+print(df['Country'][result])  # 요소값들로 출력
+print(df[result]) # 데이터 프레임으로 출력
+
+
+
+
+
+
+
