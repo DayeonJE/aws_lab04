@@ -1,0 +1,54 @@
+* 텐서플로 GPU 버전 설치방법 ( 작성일: 2023-03-19 토요일 )
+
+# GTX1070 TI :  Compute Capability 6.1, CUDA Core :1920
+
+# https://developer.nvidia.com/CUDA-toolkit-Archive
+
+[ 설치 요약 ]
+1. NVIDIA GPU (GTX 650 이상 필요, GTX1080권장, 본문서는 GTX1070 8G 로 테스트함 )  
+2. CUDA Toolkit 11.4  
+3. CuDNN 8.2.2
+4. Python 3.9 
+
+5. Tensorflow 2.10.0
+설치 방법 https://webnautes.tistory.com/1454
+
+[ 설치 순서 ]
+
+ nvidia 드라이버 설치 후
+
+1. CUDA Toolkit 11.4  버전 설치 : https://developer.nvidia.com/cuda-11-4-0-download-archive 에서
+cuda_11.4.0_471.11_win10.exe를 다운 받아 실행
+
+    윈도우 환경변수의 Path에 아래 세개 추가(생략가능, 위 설치방법 URL 참조,)
+     C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4\bin
+     C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4\libnvvp
+     C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4\extras\CUPTI\libx64 
+
+2. CuDNN 8.8.1 버전 설치(NVIDIA 계정가입 로그인 필요) :  https://developer.nvidia.com/rdp/cudnn-download
+     cudnn-windows-x86_64-8.8.1.3_cuda11-archive.zip을 다운 받아 압축해제후
+      C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4\ 안에 복사해 넣는다(위 설치방법 URL 참조)
+
+   
+3. zlibwapi.dll 추가 설치
+https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html#install-zlib-windows 사이트 참조
+
+http://www.winimage.com/zLibDll/zlib123dllx64.zip 을 다운 받아 압축해제  후
+zlibwapi.dll 파일을 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4\bin 안에 복사해 넣는다
+
+4. Anaconda 텐서플로 설치 가상 환경 만들기
+Anaconda Prompt를 관리자 권한으로 실행하고 아래 명령을 실행한다
+
+conda create -n tf210gpu python=3.9 anaconda
+conda activate tf210
+conda update pip
+pip3 install tensorflow==2.10.0
+
+
+
+
+# TF시험 환경 준비
+[1] CPU 환경 :   (1) 5시간 모두활용,  (2) Colab사용(GPU)
+[2] GPU 환경 :  (1) 데스크탑PC + GPU(GTX1660,20만원), 게이밍노트북(NVDIA 1050)
+                   (2) 노트북(썬더볼트 포트) : 외장그래픽독(29만원,LP)  + GTX1050(LP)
+                                                         eGPU(200만원)
